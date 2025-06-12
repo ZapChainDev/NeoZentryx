@@ -1,0 +1,124 @@
+'use client';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import * as z from 'zod';
+import { Button } from '@/components/ui/button';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
+import { Textarea } from '@/components/ui/textarea';
+import { useState } from 'react';
+import { generateDesignIdeas, type GenerateDesignIdeasOutput } from '@/ai/flows/generate-design-ideas';
+import { Loader2, Sparkles } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+
+const formSchema = z.object({
+  projectDescription: z.string().min(20, {
+    message: 'Project description must be at least 20 characters.',
+  }).max(1000, {
+    message: 'Project description must not exceed 1000 characters.'
+  }),
+});
+
+export type DesignIdeaFormValues = z.infer<typeof formSchema>;
+
+export default function DesignIdeaForm() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [designIdeas, setDesignIdeas] = useState<GenerateDesignIdeasOutput | null>(null);
+
+  const form = useForm<DesignIdeaFormValues>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      projectDescription: '',
+    },
+  });
+
+  async function onSubmit(values: DesignIdeaFormValues) {
+    setIsLoading(true);
+    setError(null);
+    setDesignIdeas(null);
+
+    try {
+      const result = await generateDesignIdeas({ projectDescription: values.projectDescription });
+      setDesignIdeas(result);
+    } catch (err) {
+      console.error('Error generating design ideas:', err);
+      setError(err instanceof Error ? err.message : 'An unexpected error occurred. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  return (
+    <div className="space-y-6">
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <FormField
+            control={form.control}
+            name="projectDescription"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-lg font-semibold">Project Description</FormLabel>
+                <FormControl>
+                  <Textarea
+                    placeholder="e.g., A modern e-commerce site for handmade jewelry, focusing on visual appeal and easy navigation."
+                    className="min-h-[150px] resize-none"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <Button type="submit" className="w-full" disabled={isLoading}>
+            {isLoading ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Generating Ideas...
+              </>
+            ) : (
+              <>
+                <Sparkles className="mr-2 h-4 w-4" />
+                Get Design Ideas
+              </>
+            )}
+          </Button>
+        </form>
+      </Form>
+
+      {error && (
+        <Card className="border-destructive bg-destructive/10">
+          <CardHeader>
+            <CardTitle className="text-destructive">Error</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-destructive-foreground">{error}</p>
+          </CardContent>
+        </Card>
+      )}
+
+      {designIdeas && (
+        <Card className="mt-8 border-primary bg-primary/5">
+          <CardHeader>
+            <CardTitle className="text-primary flex items-center">
+              <Sparkles className="mr-2 h-5 w-5" />
+              AI-Generated Design Ideas
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="whitespace-pre-wrap text-sm leading-relaxed">
+              {designIdeas.designIdeas}
+            </div>
+          </CardContent>
+        </Card>
+      )}
+    </div>
+  );
+}

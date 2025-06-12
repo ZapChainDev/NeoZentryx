@@ -1,0 +1,102 @@
+@import 'aos/dist/aos.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 96%; /* Light Gray */
+    --foreground: 0 0% 10%; /* Dark Gray / Black */
+
+    --card: 0 0% 10%; /* Dark Gray for phone mockups */
+    --card-foreground: 0 0% 98%; /* Light text on dark cards */
+
+    --popover: 0 0% 100%; /* White */
+    --popover-foreground: 0 0% 10%;
+
+    --primary: 0 0% 10%; /* Black for buttons */
+    --primary-foreground: 0 0% 98%; /* White text on black buttons */
+
+    --secondary: 0 0% 90%; /* Lighter Gray */
+    --secondary-foreground: 0 0% 20%;
+
+    --muted: 0 0% 90%;
+    --muted-foreground: 0 0% 40%;
+
+    --accent: 225 70% 90%; /* Light Purple for bottom banner */
+    --accent-foreground: 0 0% 10%; /* Dark text on light purple banner */
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 85%;
+    --input: 0 0% 100%;
+    --ring: 0 0% 10%; /* Ring color to match primary (black) */
+
+    --radius: 0.75rem; /* Slightly more rounded for buttons */
+
+    /* Sidebar colors - not prominent in new design, can be simplified or kept for potential future use */
+    --sidebar-background: 0 0% 95%;
+    --sidebar-foreground: 0 0% 20%;
+    --sidebar-primary: 0 0% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 225 70% 90%;
+    --sidebar-accent-foreground: 0 0% 10%;
+    --sidebar-border: 0 0% 85%;
+    --sidebar-ring: 0 0% 10%;
+  }
+
+  .dark {
+    /* For a consistent look, dark mode could invert or use a dark gray theme */
+    --background: 0 0% 10%; /* Dark Gray / Black */
+    --foreground: 0 0% 96%; /* Light Gray */
+
+    --card: 0 0% 15%; /* Slightly Lighter Dark Gray */
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 15%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 96%; /* Light Gray / White for buttons in dark mode */
+    --primary-foreground: 0 0% 10%; /* Black text on light buttons */
+
+    --secondary: 0 0% 25%;
+    --secondary-foreground: 0 0% 80%;
+
+    --muted: 0 0% 25%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 225 30% 25%; /* Darker Purple for bottom banner in dark mode */
+    --accent-foreground: 0 0% 98%; /* Light text on dark purple banner */
+
+    --destructive: 0 70% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 0 0% 96%;
+
+    /* Dark sidebar colors */
+    --sidebar-background: 0 0% 12%;
+    --sidebar-foreground: 0 0% 85%;
+    --sidebar-primary: 0 0% 96%;
+    --sidebar-primary-foreground: 0 0% 10%;
+    --sidebar-accent: 225 30% 25%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 0 0% 25%;
+    --sidebar-ring: 0 0% 96%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
