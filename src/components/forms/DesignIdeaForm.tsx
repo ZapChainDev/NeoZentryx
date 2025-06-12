@@ -14,7 +14,6 @@ import {
 } from '@/components/ui/form';
 import { Textarea } from '@/components/ui/textarea';
 import { useState } from 'react';
-import { generateDesignIdeas, type GenerateDesignIdeasOutput } from '@/ai/flows/generate-design-ideas';
 import { Loader2, Sparkles } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
@@ -31,7 +30,6 @@ export type DesignIdeaFormValues = z.infer<typeof formSchema>;
 export default function DesignIdeaForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [designIdeas, setDesignIdeas] = useState<GenerateDesignIdeasOutput | null>(null);
 
   const form = useForm<DesignIdeaFormValues>({
     resolver: zodResolver(formSchema),
@@ -41,19 +39,8 @@ export default function DesignIdeaForm() {
   });
 
   async function onSubmit(values: DesignIdeaFormValues) {
-    setIsLoading(true);
-    setError(null);
-    setDesignIdeas(null);
-
-    try {
-      const result = await generateDesignIdeas({ projectDescription: values.projectDescription });
-      setDesignIdeas(result);
-    } catch (err) {
-      console.error('Error generating design ideas:', err);
-      setError(err instanceof Error ? err.message : 'An unexpected error occurred. Please try again.');
-    } finally {
-      setIsLoading(false);
-    }
+    setIsLoading(false);
+    setError('AI design idea generation is currently unavailable.');
   }
 
   return (
@@ -100,22 +87,6 @@ export default function DesignIdeaForm() {
           </CardHeader>
           <CardContent>
             <p className="text-destructive-foreground">{error}</p>
-          </CardContent>
-        </Card>
-      )}
-
-      {designIdeas && (
-        <Card className="mt-8 border-primary bg-primary/5">
-          <CardHeader>
-            <CardTitle className="text-primary flex items-center">
-              <Sparkles className="mr-2 h-5 w-5" />
-              AI-Generated Design Ideas
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="whitespace-pre-wrap text-sm leading-relaxed">
-              {designIdeas.designIdeas}
-            </div>
           </CardContent>
         </Card>
       )}
