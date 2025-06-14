@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { Sparkles, Cpu, Lightbulb, Users, Bot, Mail, Phone, MapPin, Crown, Megaphone, Terminal, Globe, Facebook, Twitter, Instagram } from 'lucide-react';
+import { Sparkles, Cpu, Lightbulb, Users, Bot, Mail, Phone, MapPin, Crown, Megaphone, Terminal, Globe, Facebook, X, Instagram } from 'lucide-react';
 import ProjectCard from '@/components/portfolio/ProjectCard';
 import TeamMemberCard from '@/components/team/TeamMemberCard';
 import ContactForm from '@/components/forms/ContactForm';
@@ -395,7 +395,7 @@ export default function HomePage() {
               <Facebook size={24} />
             </a>
             <a href="https://x.com/NeoZentryxWS?fbclid=IwY2xjawK530VleHRuA2FlbQIxMABicmlkETFQWVRQMkVpbGd5N293dUxQAR7D34q3NPd55t8LYrLZJX-KTyTIwEHdnGq5n1YBMzNRH4Nxptb5scTg5SvMxQ_aem_LgomB9AQYbPknJjWwSpCuN" target="_blank" rel="noopener noreferrer" className="text-card-foreground/70 hover:text-primary transition-colors">
-              <Twitter size={24} />
+              <X size={24} />
             </a>
             <a href="https://www.instagram.com/neozentryxws/" target="_blank" rel="noopener noreferrer" className="text-card-foreground/70 hover:text-primary transition-colors">
               <Instagram size={24} />
