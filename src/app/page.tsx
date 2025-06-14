@@ -64,6 +64,15 @@ const teamMembers = [
   },
   {
     id: '3',
+    name: 'Ivar',
+    role: 'IT Network Support/Marketing',
+    bio: 'Supporting IT infrastructure and marketing efforts with technical expertise and dedication.',
+    imageUrl: '/teampicture/IVAR.png',
+    imageHint: 'man it support',
+    category: 'Development & Design',
+  },
+  {
+    id: '4',
     name: 'Irish Egie Arao',
     role: 'Web Developer/Lead Developer',
     bio: 'Leading our development team with expertise in creating innovative web solutions and managing complex projects.',
@@ -72,7 +81,7 @@ const teamMembers = [
     category: 'Development & Design',
   },
   {
-    id: '4',
+    id: '5',
     name: 'Roque Bongalon',
     role: 'Digital Marketing Specialist/Web Developer',
     bio: 'Combining marketing expertise with technical skills to create effective digital strategies and web solutions.',
@@ -81,7 +90,7 @@ const teamMembers = [
     category: 'Development & Design',
   },
   {
-    id: '5',
+    id: '6',
     name: 'Michael Boco',
     role: 'Data Analyst/Operations Manager',
     bio: 'Driving data-driven decisions and ensuring smooth operations across all aspects of the business.',
@@ -90,7 +99,7 @@ const teamMembers = [
     category: 'Development & Design',
   },
   {
-    id: '6',
+    id: '7',
     name: 'Mark Berio',
     role: 'Web Developer',
     bio: 'Creating innovative web solutions with a focus on user experience and technical excellence.',
