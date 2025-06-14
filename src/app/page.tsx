@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { Sparkles, Cpu, Lightbulb, Users, Bot, Mail, Phone, MapPin, Crown, Megaphone, Terminal, Globe } from 'lucide-react';
+import { Sparkles, Cpu, Lightbulb, Users, Bot, Mail, Phone, MapPin, Crown, Megaphone, Terminal, Globe, Facebook, Twitter, Instagram } from 'lucide-react';
 import ProjectCard from '@/components/portfolio/ProjectCard';
 import TeamMemberCard from '@/components/team/TeamMemberCard';
 import ContactForm from '@/components/forms/ContactForm';
@@ -139,13 +139,13 @@ export default function HomePage() {
         <p className="text-lg sm:text-xl md:text-2xl text-foreground/80 max-w-3xl mx-auto animate-fade-in-up opacity-0" style={{ animationDelay: '0.3s' }}>
           Your Vision, Our Code — Let's Build Something Extraordinary.
         </p>
-        <div className="pt-4 md:pt-6 flex flex-col space-y-6 sm:flex-row sm:space-y-0 sm:justify-center sm:gap-4 animate-fade-in-up opacity-0" style={{ animationDelay: '0.5s' }}>
-          <Link href="/#contact" passHref>
+        <div className="pt-4 md:pt-6 space-y-6 sm:space-y-0 sm:flex sm:justify-center sm:gap-4 animate-fade-in-up opacity-0" style={{ animationDelay: '0.5s' }}>
+          <Link href="/#contact" passHref className="block sm:inline-block">
             <Button size="lg" className="w-full sm:w-auto bg-primary text-primary-foreground hover:bg-primary/90 px-10 py-6 text-lg rounded-xl shadow-md hover:shadow-lg transition-shadow">
               Get Started
             </Button>
           </Link>
-          <Link href="/#portfolio" passHref>
+          <Link href="/#portfolio" passHref className="block sm:inline-block">
             <Button size="lg" variant="outline" className="w-full sm:w-auto px-10 py-6 text-lg rounded-xl shadow-md hover:shadow-lg transition-shadow border-primary hover:bg-primary/5">
               Explore Our Work
             </Button>
@@ -385,8 +385,24 @@ export default function HomePage() {
           <span className="text-sm md:text-base text-accent-foreground font-semibold mx-4">USER-CENTRIC DESIGN</span>
         </div>
       </section>
-       <footer className="w-full py-4 text-center">
-        <p className="text-xs text-muted-foreground">&copy; {currentYear} NeoZentryx Web Studio. All rights reserved.</p>
+
+      {/* New Footer Section */}
+      <footer className="w-full border-t bg-card py-8 text-center text-card-foreground/80">
+        <div className="container mx-auto px-4">
+          <p>&copy; {currentYear} NeoZentryx Web Studio. All rights reserved.</p>
+          <div className="mt-4 flex justify-center space-x-6">
+            <a href="https://www.facebook.com/profile.php?id=61576381624367" target="_blank" rel="noopener noreferrer" className="text-card-foreground/70 hover:text-primary transition-colors">
+              <Facebook size={24} />
+            </a>
+            <a href="https://x.com/NeoZentryxWS?fbclid=IwY2xjawK530VleHRuA2FlbQIxMABicmlkETFQWVRQMkVpbGd5N293dUxQAR7D34q3NPd55t8LYrLZJX-KTyTIwEHdnGq5n1YBMzNRH4Nxptb5scTg5SvMxQ_aem_LgomB9AQYbPknJjWwSpCuN" target="_blank" rel="noopener noreferrer" className="text-card-foreground/70 hover:text-primary transition-colors">
+              <Twitter size={24} />
+            </a>
+            <a href="https://www.instagram.com/neozentryxws/" target="_blank" rel="noopener noreferrer" className="text-card-foreground/70 hover:text-primary transition-colors">
+              <Instagram size={24} />
+            </a>
+          </div>
+          <p className="text-sm mt-2">Your Vision, Our Code — Let's Build Something Extraordinary.</p>
+        </div>
       </footer>
     </div>
   );
