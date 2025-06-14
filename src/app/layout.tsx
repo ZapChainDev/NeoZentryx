@@ -12,6 +12,11 @@ import { useEffect } from 'react';
 const geistSans = GeistSans;
 const geistMono = GeistMono;
 
+export const metadata: Metadata = {
+  title: 'NeoZentryx Web Studio',
+  description: 'Your Vision, Our Code — Let\'s Build Something Extraordinary.',
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
