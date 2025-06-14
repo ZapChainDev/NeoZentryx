@@ -28,7 +28,7 @@ const teamMembers = [
   },
   {
     id: '3',
-    name: 'Ivar Cananua',
+    name: 'Ivar',
     role: 'IT Network Support/Marketing',
     bio: 'Supporting IT infrastructure and marketing efforts with technical expertise and dedication.',
     imageUrl: '/teampicture/IVAR.png',
