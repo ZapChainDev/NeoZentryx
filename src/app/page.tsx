@@ -139,7 +139,7 @@ export default function HomePage() {
         <p className="text-lg sm:text-xl md:text-2xl text-foreground/80 max-w-3xl mx-auto animate-fade-in-up opacity-0" style={{ animationDelay: '0.3s' }}>
           Your Vision, Our Code — Let's Build Something Extraordinary.
         </p>
-        <div className="pt-4 md:pt-6 space-y-4 sm:space-y-0 sm:flex sm:justify-center sm:gap-4 animate-fade-in-up opacity-0" style={{ animationDelay: '0.5s' }}>
+        <div className="pt-4 md:pt-6 space-y-6 sm:space-y-0 sm:flex sm:justify-center sm:gap-4 animate-fade-in-up opacity-0" style={{ animationDelay: '0.5s' }}>
           <Link href="/#contact" passHref>
             <Button size="lg" className="w-full sm:w-auto bg-primary text-primary-foreground hover:bg-primary/90 px-10 py-6 text-lg rounded-xl shadow-md hover:shadow-lg transition-shadow">
               Get Started
