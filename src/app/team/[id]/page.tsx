@@ -88,16 +88,16 @@ When he's not coding, you'll find him immersed in manga or manhwa, binge-watchin
   },
 ];
 
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+export async function generateMetadata(
+  { params }: { params: { id: string } }
+): Promise<Metadata> {
   const member = teamMembers.find(m => m.id === params.id);
-  
   if (!member) {
     return {
       title: 'Team Member Not Found - NeoZentryx Web Studio',
       description: 'The requested team member could not be found.',
     };
   }
-
   return {
     title: `${member.name} - ${member.role} - NeoZentryx Web Studio`,
     description: member.bio.substring(0, 160) + '...',
@@ -106,7 +106,6 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
 
 export default function Page({ params }: { params: { id: string } }) {
   const member = teamMembers.find(m => m.id === params.id);
-
   if (!member) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -123,7 +122,6 @@ export default function Page({ params }: { params: { id: string } }) {
       </div>
     );
   }
-
   return (
     <div className="min-h-screen pt-16 md:pt-24 pb-10">
       <div className="max-w-4xl mx-auto px-4">
@@ -136,7 +134,6 @@ export default function Page({ params }: { params: { id: string } }) {
             </Button>
           </Link>
         </div>
-
         {/* Team Member Content */}
         <div className="grid md:grid-cols-2 gap-12 items-start">
           {/* Image */}
@@ -148,7 +145,6 @@ export default function Page({ params }: { params: { id: string } }) {
               className="object-cover"
             />
           </div>
-
           {/* Details */}
           <div className="space-y-6">
             <div>
@@ -158,7 +154,6 @@ export default function Page({ params }: { params: { id: string } }) {
                 {member.category}
               </span>
             </div>
-
             <div className="prose prose-lg max-w-none">
               <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
                 {member.bio}
