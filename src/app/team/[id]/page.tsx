@@ -88,13 +88,7 @@ When he's not coding, you'll find him immersed in manga or manhwa, binge-watchin
   },
 ];
 
-interface TeamMemberPageProps {
-  params: {
-    id: string;
-  };
-}
-
-export async function generateMetadata({ params }: TeamMemberPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
   const member = teamMembers.find(m => m.id === params.id);
   
   if (!member) {
@@ -110,7 +104,7 @@ export async function generateMetadata({ params }: TeamMemberPageProps): Promise
   };
 }
 
-export default function TeamMemberPage({ params }: TeamMemberPageProps) {
+export default function TeamMemberPage({ params }: { params: { id: string } }) {
   const member = teamMembers.find(m => m.id === params.id);
 
   if (!member) {
