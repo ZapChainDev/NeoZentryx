@@ -104,7 +104,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   };
 }
 
-export default function TeamMemberPage({ params }: { params: { id: string } }) {
+export default function Page({ params }: { params: { id: string } }) {
   const member = teamMembers.find(m => m.id === params.id);
 
   if (!member) {
