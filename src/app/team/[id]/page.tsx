@@ -88,10 +88,9 @@ When he's not coding, you'll find him immersed in manga or manhwa, binge-watchin
   },
 ];
 
-export async function generateMetadata(
-  { params }: { params: { id: string } }
-): Promise<Metadata> {
-  const member = teamMembers.find(m => m.id === params.id);
+export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+  const awaitedParams = await params;
+  const member = teamMembers.find(m => m.id === awaitedParams.id);
   if (!member) {
     return {
       title: 'Team Member Not Found - NeoZentryx Web Studio',
@@ -104,8 +103,9 @@ export async function generateMetadata(
   };
 }
 
-export default function Page({ params }: { params: { id: string } }) {
-  const member = teamMembers.find(m => m.id === params.id);
+export default async function Page({ params }: { params: { id: string } }) {
+  const awaitedParams = await params;
+  const member = teamMembers.find(m => m.id === awaitedParams.id);
   if (!member) {
     return (
       <div className="min-h-screen flex items-center justify-center">
