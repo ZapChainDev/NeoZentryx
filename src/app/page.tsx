@@ -48,7 +48,7 @@ const teamMembers = [
     id: '1',
     name: 'John Mark Papelirin',
     role: 'CEO Founder',
-    bio: 'Leading the vision and strategy of NeoZentryx Web Studio with innovative leadership and entrepreneurial spirit.',
+    bio: `John Mark Papelirin is the CEO of NeoZentryx Web Studio, a full-stack web developer, startup builder, and basketball player. He works at a US-based company, CBL Company, and enjoys building websites, apps, and businesses using tools like Firebase and Vercel. He loves sharing ideas, creating new projects, and helping others grow. Outside of work, he's a gym rat, a big Marvel fan, a YouTuber, a singer, and enjoys mixing and mastering music. John stays active on and off the court—balancing tech, creativity, and passion.`,
     imageUrl: '/teampicture/JOHN MARK.png',
     imageHint: 'man ceo',
     category: 'Leadership',
@@ -57,7 +57,9 @@ const teamMembers = [
     id: '2',
     name: 'Carlito Cananua',
     role: 'IT Network Support/Marketing',
-    bio: 'Expert in IT infrastructure and marketing strategies, ensuring seamless operations and effective outreach.',
+    bio: `I'm Carl, an IT Network Support Specialist at an international school, handling network security, system maintenance, and student accounts on Microsoft and Google platforms. I'm also learning web and app development to broaden my skills.
+
+In addition, I support NeoZentryx Web Studio as part of the marketing team, eager to grow in the development space and contribute to a creative, forward-thinking environment.`,
     imageUrl: '/teampicture/CARLITO.png',
     imageHint: 'man it support',
     category: 'Development & Design',
@@ -66,7 +68,9 @@ const teamMembers = [
     id: '3',
     name: 'Ivar Vincent David',
     role: 'IT Network Support/Marketing',
-    bio: 'Supporting IT infrastructure and marketing efforts with technical expertise and dedication.',
+    bio: `Ivar is your friendly neighborhood IT guy with a growing passion for web development—part network troubleshooter, part digital creator. As an IT Network Support Specialist at an international college, he keeps systems running smoothly, manages accounts, and ensures seamless access to tools and services across Microsoft 365 and Google Workspace.
+
+Outside the daily tech grind, Ivar supports NeoZentryx Web Studio as part of the marketing team—contributing ideas, visuals, and creativity while expanding his skills in web and app development. When he's off the clock, you'll find him lost in manga, manhwa, and manhua, or exploring immersive game worlds. Always curious and hands-on, Ivar keeps pushing his skills forward—whether it's solving real-world tech puzzles or diving into digital adventures.`,
     imageUrl: '/teampicture/IVAR.png',
     imageHint: 'man it support',
     category: 'Development & Design',
@@ -75,7 +79,13 @@ const teamMembers = [
     id: '4',
     name: 'Irish Egie Arao',
     role: 'Web Developer/Lead Developer',
-    bio: 'Leading our development team with expertise in creating innovative web solutions and managing complex projects.',
+    bio: `Tech by day, gamer by night—always tinkering, always learning
+
+I'm Irish Egie Arao, your go-to IT Designate at Pinabacdao LGU. My days revolve around keeping the gears of government tech turning—from troubleshooting laptops and securing systems to managing Linux servers that power our modern workflows. I also develop in-house software, bridging gaps between the government and the community with practical digital solutions.
+
+When I'm not knee-deep in code or hardware, you'll find me gaming, binge-watching YouTube, cycling, or hitting the weights. I'm endlessly curious, always picking up new tech skills—because why settle for the status quo when there's so much to build and break (then fix again)?
+
+Let's make tech work for progress.`,
     imageUrl: '/teampicture/IRISH.png',
     imageHint: 'woman developer',
     category: 'Development & Design',
@@ -84,7 +94,9 @@ const teamMembers = [
     id: '5',
     name: 'Roque Bongalon',
     role: 'Digital Marketing Specialist/Web Developer',
-    bio: 'Combining marketing expertise with technical skills to create effective digital strategies and web solutions.',
+    bio: `Roque, also known as Roqs, is a former Digital Marketing Specialist turned junior web developer with a strong curiosity for how things work behind the scenes. He enjoys tweaking, experimenting, and exploring new tech—constantly honing his skills in web development.
+
+When he's not coding, you'll find him immersed in manga or manhwa, binge-watching anime, or grinding in online games. A passionate self-learner, Roqs is always leveling up—whether it's through new tools, fresh ideas, or the next challenge on screen.`,
     imageUrl: '/teampicture/ROQUE.png',
     imageHint: 'man marketing',
     category: 'Development & Design',
@@ -102,7 +114,12 @@ const teamMembers = [
     id: '7',
     name: 'Mark Berio',
     role: 'Web Developer',
-    bio: 'Creating innovative web solutions with a focus on user experience and technical excellence.',
+    bio: `Hi, I'm Mark Berio, a programmer at Salenga Law Firm in Pasig City. I use programming languages like Rust, C++, TypeScript, and Python to help and contribute to existing projects. Also have 
+‎technical support, where I handled troubleshooting for both hardware and software issues.
+‎ 
+‎At NeoZentryx Web Studio, I work as a Web Developer, where I contribute to building and improving digital solutions that help clients bring their ideas to life.
+‎
+‎While I'm not coding, I often spend time reading about new technologies and trends to stay updated in the fast-evolving tech world. Outside of tech, I enjoy reading manga, playing basketball, and diving into online games. It's how I relax, recharge, and stay inspired.`,
     imageUrl: '/teampicture/BERIO.png',
     imageHint: 'man developer',
     category: 'Development & Design',
@@ -240,6 +257,7 @@ export default function HomePage() {
              <div className="max-w-[10rem] sm:max-w-[12rem] mx-auto md:mx-0 md:max-w-xs">
               <TeamMemberCard
                 key={ceo.id}
+                id={ceo.id}
                 name={ceo.name}
                 role={ceo.role}
                 bio={ceo.bio}
@@ -261,6 +279,8 @@ export default function HomePage() {
                   style={{ animationDelay: `${0.5 + index * 0.15}s` }}
                 >
                   <TeamMemberCard
+                    key={member.id}
+                    id={member.id}
                     name={member.name}
                     role={member.role}
                     bio={member.bio}
@@ -284,6 +304,8 @@ export default function HomePage() {
                   style={{ animationDelay: `${0.5 + marketingTeam.length * 0.15 + 0.3 + index * 0.15}s` }}
                 >
                   <TeamMemberCard
+                    key={member.id}
+                    id={member.id}
                     name={member.name}
                     role={member.role}
                     bio={member.bio}

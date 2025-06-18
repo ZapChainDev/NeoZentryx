@@ -1,12 +1,10 @@
-import TeamMemberCard from '@/components/team/TeamMemberCard';
+import Image from 'next/image';
+import Link from 'next/link';
+import { ArrowLeft } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import type { Metadata } from 'next';
-import { Users, Crown, Megaphone, Terminal } from 'lucide-react';
 
-export const metadata: Metadata = {
-  title: 'Meet The Team - NeoZentryx Web Studio',
-  description: 'Meet the talented individuals behind NeoZentryx Web Studio, dedicated to crafting exceptional digital experiences.',
-};
-
+// Team member data - you might want to move this to a separate file
 const teamMembers = [
   {
     id: '1',
@@ -90,96 +88,91 @@ When he's not coding, you'll find him immersed in manga or manhwa, binge-watchin
   },
 ];
 
-export default function TeamPage() {
-  const ceo = teamMembers.find(member => member.category === 'Leadership');
-  const marketingTeam = teamMembers.filter(member => member.category === 'Marketing');
-  const devAndDesignTeam = teamMembers.filter(member => member.category === 'Development & Design');
+interface TeamMemberPageProps {
+  params: {
+    id: string;
+  };
+}
+
+export async function generateMetadata({ params }: TeamMemberPageProps): Promise<Metadata> {
+  const member = teamMembers.find(m => m.id === params.id);
+  
+  if (!member) {
+    return {
+      title: 'Team Member Not Found - NeoZentryx Web Studio',
+      description: 'The requested team member could not be found.',
+    };
+  }
+
+  return {
+    title: `${member.name} - ${member.role} - NeoZentryx Web Studio`,
+    description: member.bio.substring(0, 160) + '...',
+  };
+}
+
+export default function TeamMemberPage({ params }: TeamMemberPageProps) {
+  const member = teamMembers.find(m => m.id === params.id);
+
+  if (!member) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold mb-4">Team Member Not Found</h1>
+          <p className="text-muted-foreground mb-6">The requested team member could not be found.</p>
+          <Link href="/team">
+            <Button>
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              Back to Team
+            </Button>
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="space-y-16">
-      <section className="text-center animate-fade-in-up opacity-0">
-        <Users className="h-16 w-16 text-primary mx-auto mb-4" />
-        <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">Meet Our Team</h1>
-        <p className="mt-4 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-          The driving force behind NeoZentryx Studio. Passionate innovators, designers, and developers dedicated to your success.
-        </p>
-      </section>
+    <div className="min-h-screen pt-16 md:pt-24 pb-10">
+      <div className="max-w-4xl mx-auto px-4">
+        {/* Back Button */}
+        <div className="mb-8">
+          <Link href="/team">
+            <Button variant="ghost" className="mb-4">
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              Back to Team
+            </Button>
+          </Link>
+        </div>
 
-      {ceo && (
-        <section className="mb-12 animate-fade-in-up opacity-0" style={{ animationDelay: '0.2s' }}>
-          <div className="flex flex-col items-center text-center mb-8">
-            <Crown className="h-12 w-12 text-yellow-400 mb-2" />
-            <h2 className="text-3xl font-semibold text-primary">Our Leader</h2>
-          </div>
-          <div className="max-w-md mx-auto">
-            <TeamMemberCard
-              key={ceo.id}
-              id={ceo.id}
-              name={ceo.name}
-              role={ceo.role}
-              bio={ceo.bio}
-              imageUrl={ceo.imageUrl}
-              imageHint={ceo.imageHint}
+        {/* Team Member Content */}
+        <div className="grid md:grid-cols-2 gap-12 items-start">
+          {/* Image */}
+          <div className="relative aspect-[3/4] w-full max-w-md mx-auto overflow-hidden rounded-lg bg-gray-100 shadow-lg">
+            <Image
+              src={member.imageUrl}
+              alt={member.name}
+              fill
+              className="object-cover"
             />
           </div>
-        </section>
-      )}
-      
-      {marketingTeam.length > 0 && (
-        <section>
-          <div className="flex flex-col items-center text-center mb-10 animate-fade-in-up opacity-0" style={{ animationDelay: '0.4s' }}>
-            <Megaphone className="h-12 w-12 text-primary mb-2" />
-            <h2 className="text-3xl font-semibold text-primary">Marketing Team</h2>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {marketingTeam.map((member, index) => (
-              <div
-                key={member.id}
-                className="animate-fade-in-up opacity-0"
-                style={{ animationDelay: `${0.5 + index * 0.15}s` }}
-              >
-                <TeamMemberCard
-                  key={member.id}
-                  id={member.id}
-                  name={member.name}
-                  role={member.role}
-                  bio={member.bio}
-                  imageUrl={member.imageUrl}
-                  imageHint={member.imageHint}
-                />
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
 
-      {devAndDesignTeam.length > 0 && (
-        <section>
-          <div className="flex flex-col items-center text-center mb-10 mt-16 animate-fade-in-up opacity-0" style={{ animationDelay: `${0.5 + marketingTeam.length * 0.15 + 0.2}s` }}>
-            <Terminal className="h-12 w-12 text-primary mb-2" />
-            <h2 className="text-3xl font-semibold text-primary">Development & Design Team</h2>
+          {/* Details */}
+          <div className="space-y-6">
+            <div>
+              <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-2">{member.name}</h1>
+              <p className="text-xl md:text-2xl text-primary font-medium">{member.role}</p>
+              <span className="inline-block mt-2 px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium">
+                {member.category}
+              </span>
+            </div>
+
+            <div className="prose prose-lg max-w-none">
+              <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
+                {member.bio}
+              </p>
+            </div>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {devAndDesignTeam.map((member, index) => (
-              <div
-                key={member.id}
-                className="animate-fade-in-up opacity-0"
-                style={{ animationDelay: `${0.5 + marketingTeam.length * 0.15 + 0.3 + index * 0.15}s` }}
-              >
-                <TeamMemberCard
-                  key={member.id}
-                  id={member.id}
-                  name={member.name}
-                  role={member.role}
-                  bio={member.bio}
-                  imageUrl={member.imageUrl}
-                  imageHint={member.imageHint}
-                />
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
+        </div>
+      </div>
     </div>
   );
-}
+} 

@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 const navItems = [
   { href: '/#portfolio', label: 'Portfolio' },
@@ -50,8 +51,8 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        <Link href="/" className="flex items-center gap-2 text-xl font-bold text-foreground">
-          <LogoIcon />
+        <Link href="/" className="flex items-center gap-4 text-xl font-bold text-foreground">
+          <Image src="/logo/NeoLogo.png" alt="NeoZentryx Studio Logo" height={64} width={64} className="rounded" />
           <span>NeoZentryx Studio</span>
         </Link>
 
